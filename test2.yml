@@ -7,4 +7,4 @@
     - name: server name
       command: hostname
     - name: get user id
-      shell: cat /etc/passwd | grep {{ username1 }}
+      user: name={{ username1 }}

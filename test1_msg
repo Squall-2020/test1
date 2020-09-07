@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: get hostname
+      command: hostname
+      register: ok_var
+    - debug: msg="{{ ok_var.stdout }}"

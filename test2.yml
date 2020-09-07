@@ -1,9 +1,10 @@
 ---
 - hosts: all
   remote_user: root
-
+  vars:
+    - username1: student
   tasks:
-    - name: get hostname
+    - name: server name
       command: hostname
-    - name: check file
-      command: cat /tmp/cctv
+    - name: get user id
+      shell: cat /etc/passwd | grep {{ username1 }}

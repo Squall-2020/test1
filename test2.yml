@@ -5,6 +5,6 @@
     - username1: student
   tasks:
     - name: server name
-      command: hostname
-    - name: get user id
+      command: uname -n
+      shell: cat /etc/passwd | grep {{ username1 }}
       user: name={{ username1 }}

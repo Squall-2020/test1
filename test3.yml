@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: root
+  vars:
+    - username1: student
+  tasks:
+    - name: get user id
+      shell: cat /etc/passwd | grep {{ username1 }}
+      register: ok_var
+    - debug: msg="{{ ok_var.stdout }}"

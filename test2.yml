@@ -1,10 +1,10 @@
 ---
-- hosts: all
+- hosts: all    
   remote_user: root
   vars:
     - username1: student
   tasks:
     - name: server name
       command: uname -n
+    - name: get user id
       shell: cat /etc/passwd | grep {{ username1 }}
-      user: name={{ username1 }}

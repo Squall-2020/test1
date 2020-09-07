@@ -1,0 +1,11 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: get hostname
+      command: hostname
+    - name: creat file
+      file: name=/tmp/cctv state=touch
+    - name: edit file
+      shell: echo `date` >> cctv

@@ -4,7 +4,8 @@
   vars:
     - username1: student
   tasks:
-    - name: get user id
-      shell: cat /etc/passwd | grep {{ username1 }}
-      register: ok_var
-    - debug: msg="{{ ok_var.stdout }}"
+    - name: check user info
+      shell: id  {{ username1 }} || /bin/true
+      register: result
+    - debug:
+        msg: "{{ result.stderr }} {{ result.stdout }}"

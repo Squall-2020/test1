@@ -2,7 +2,7 @@ all:
   children:
     linux:
       hosts:
-        testhost12:
+        testhost32:
           ansible_host: 192.168.1.200
       vars:
         devicetype: compute
@@ -11,12 +11,12 @@ all:
         ansible_become_method: sudo
     aaa_grp_cred_linux:
       hosts:
-        testhost12:
+        testhost32:
           ansible_host: 192.168.1.200
       vars:
     aaa_grp_dres_jumphost:
       hosts:
-        testhost12:
+        testhost32:
           ansible_host: 192.168.1.200
       vars:
     windows:

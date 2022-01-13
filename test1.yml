@@ -2,36 +2,36 @@ all:
   children:
     linux:
       hosts:
-        mcms-rh8-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.131
-        mcms-rh7-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.132
-        mcms-centos7-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.133
-        mcms-rh8-02.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.150
+        testhost1:
+          ansible_host: 192.168.1.10
+        testhost2:
+          ansible_host: 192.168.1.11
       vars:
         devicetype: compute
         ostype: linux
         ansible_become: yes
         ansible_become_method: sudo
+    aaa_grp_cred_linux:
+      hosts:
+        testhost1:
+          ansible_host: 192.168.1.10
+        testhost2:
+          ansible_host: 192.168.1.11
+      vars:
+    aaa_grp_dres_jumphost:
+      hosts:
+        testhost1:
+          ansible_host: 192.168.1.10
+        testhost2:
+          ansible_host: 192.168.1.11
+      vars:
     windows:
       hosts:
-        mcms-win19-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.134
-        mcms-win16-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.135
       vars:
         devicetype: compute
         ostype: windows
     aix:
       hosts:
-        mcmsaix01:
-          ansible_host: 10.240.108.5
-        mcmsaix02:
-          ansible_host: 10.240.108.6
-        mcmsaix03:
-          ansible_host: 10.240.108.7
       vars:
         devicetype: compute
         ostype: aix
@@ -40,52 +40,16 @@ all:
         ansible_python_interpreter: "LANG=ja_JP.UTF-8 /opt/freeware/bin/python3"
     mcj_grp_cred_linux:
       hosts:
-        mcms-rh8-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.131
-        mcms-rh7-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.132
-        mcms-centos7-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.133
-        mcmsaix01:
-          ansible_host: 10.240.108.5
-        mcmsaix02:
-          ansible_host: 10.240.108.6
-        mcmsaix03:
-          ansible_host: 10.240.108.7
-        mcms-rh8-02.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.150
       vars:
         ansible_connection: ssh
     mcj_grp_cred_windows:
       hosts:
-        mcms-win19-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.134
-        mcms-win16-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.135
       vars:
         ansible_connection: psrp
         ansible_psrp_protocol: https
         ansible_psrp_cert_validation: ignore
     mcj_grp_dres_jumphost:
       hosts:
-        mcms-rh8-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.131
-        mcms-rh7-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.132
-        mcms-centos7-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.133
-        mcms-win19-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.134
-        mcms-win16-01.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.135
-        mcmsaix01:
-          ansible_host: 10.240.108.5
-        mcmsaix02:
-          ansible_host: 10.240.108.6
-        mcmsaix03:
-          ansible_host: 10.240.108.7
-        mcms-rh8-02.mcms-japan-dev.cloud:
-          ansible_host: 172.16.1.150
       vars:
         ansible_psrp_proxy: 'socks5h://unixsocket/tmp/mysocks-{{ account_code }}-{{ trans_num }}-{{ jh_socks_port }}'
         ansible_ssh_common_args: -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oProxyCommand='ssh -i $JH2_SSH_PRIVATE_KEY -W %h:%p -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oProxyCommand='"'"'ssh -i $JH1_SSH_PRIVATE_KEY -W {{ jh2_ip }}:{{ jh2_ssh_port }} -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null {{ jh1_ssh_user }}@{{ jh1_ip }}'"'"' {{ jh2_ssh_user }}@{{ jh2_ip }}'

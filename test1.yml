@@ -8,6 +8,8 @@ all:
           ansible_host: 172.16.1.132
         mcms-centos7-01.mcms-japan-dev.cloud:
           ansible_host: 172.16.1.133
+        mcms-rh8-02.mcms-japan-dev.cloud:
+          ansible_host: 172.16.1.150
       vars:
         devicetype: compute
         ostype: linux
@@ -50,6 +52,8 @@ all:
           ansible_host: 10.240.108.6
         mcmsaix03:
           ansible_host: 10.240.108.7
+        mcms-rh8-02.mcms-japan-dev.cloud:
+          ansible_host: 172.16.1.150
       vars:
         ansible_connection: ssh
     mcj_grp_cred_windows:
